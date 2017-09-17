@@ -1,43 +1,9 @@
-{%load staticfiles%}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Satisfy">
-<link rel="stylesheet" type="text/css" href="{%static 'music/css/styles.css'%}"/>
+{% extends 'music/base.html' %}
 
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-targer="#topNavBar">
-                <i class="fa fa-reorder"></i>
-            </button>
-            <a class="navbar-brand" href="{%url 'music:index'%}">Viberr</a>
-        </div>
-        <!--items-->
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active">
-                    <a href="{%url 'music:index'%}">
-                        <span class="glyphicon glyphicon-cd" aria-hidden="true"></span>&nbsp;&nbsp;Albums
-                    </a>
-                </li>
-                <li class="">
-                    <a href="#">
-                        <span class="glyphicon glyphicon-music" aria-hidden="true"></span>&nbsp;&nbsp;Songs
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-{% if all_albums %}
+{%block body%}
     <ul>
-        {%for album in all_albums %}
+        {%for album in object_list %}
         <li><a href="{%url 'music:detail' album.id%}">{{album.album_title}}</a></li>
         {% endfor %}
     </ul>
-{%else%}
-    <h3>No albums Available</h3>
-{%endif%}
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{%endblock%}
